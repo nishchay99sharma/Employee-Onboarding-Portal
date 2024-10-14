@@ -1,0 +1,212 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7fa;
+  font-family: Arial, sans-serif;
+}
+
+/* Notification Styles */
+#notificationList {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Notification Item */
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.notification-item .notification-text {
+  flex: 1; /* Take up available space */
+}
+
+/* Hidden Notification Styles */
+.collapsed {
+  display: none; /* Hide the notification list when collapsed */
+}
+
+/* Card Styling */
+/* Ensure cards have consistent spacing */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Icons in cards */
+.card-body i {
+  display: block;
+  margin-bottom: 10px;
+  color: #007bff;
+  text-align: center;
+}
+
+/* Responsive iframe for videos */
+iframe {
+  border-radius: 8px;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.card-title i {
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+.list-group-item i {
+  color: #28a745;
+  font-size: 1rem;
+}
+
+#taskChecklist .list-group-item {
+  transition: background-color 0.3s ease;
+}
+
+#taskChecklist .list-group-item:hover {
+  background-color: #f0f0f0;
+}
+
+.progress-bar {
+  transition: width 0.4s ease-in-out;
+}
+
+/* Sidebar Styles */
+#sidebar {
+  width: 150px;
+  height: 100vh;
+  background-color: #f8f9fa;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  z-index: 1;
+  transition: transform 0.3s ease-in-out;
+}
+
+#sidebarToggle{
+  padding-right: 10px;
+}
+
+#sidebar.collapse {
+  transform: translateX(-100%); /* Move sidebar off-screen */
+}
+
+/* Task Tracker Padding */
+#taskList {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Resource Cards Styling */
+.resource-item {
+  margin-bottom: 15px;
+}
+
+.res-lib {
+  padding: 0 20px 0 20px;
+}
+
+.lib-btn {
+  padding: 0 20px 0 20px;
+}
+
+#resourceSearch {
+  margin-right: 10px;
+}
+
+#resourceGrid {
+  margin-top: 20px;
+}
+
+/* Team Introduction Styles */
+.carousel-item {
+  margin-bottom: 20px;
+}
+
+.card img {
+  height: 200px; /* Set a fixed height for the team member images */
+  object-fit: cover; /* Ensure images maintain their aspect ratio */
+}
+
+/* Feedback and Completion Styles */
+#feedbackForm {
+  margin-top: 20px;
+}
+
+
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+  #sidebar {
+    display: block;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    display: none;
+  }
+
+  #sidebar.open {
+    display: block;
+    position: absolute;
+    top: 60px;
+    width: 150px;
+    z-index: 1;
+  }
+
+  #sidebarToggle{
+    padding-right: 10px;
+  }
+  
+
+  .container-fluid {
+    padding-left: 0;
+  }
+
+  .navbar-brand {
+    margin-left: 10px;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .res-lib {
+    padding: 0 20px 0 20px;
+  }
+
+  .lib-btn {
+    padding: 0 10px 0 10px;
+  }
+
+  .res-struct{
+    padding: 0 0 0 35px;
+  }
+
+  .res-struct-adj1{
+    padding: 0 0 0 20px;
+  }
+
+  .res-struct-adj2{
+    padding: 0 0 0 10px;
+  }
+
+  .res-struct-adj3{
+    padding: 0 10px 0 20px;
+  }
+}

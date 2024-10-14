@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Onboarding - Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- Link to external CSS -->
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">BENZINE</a>
+      <div class="d-flex align-items-center ms-auto" id="name-logout">
+        <div id="userName" class="me-3 text-light"></div>
+        <button id="logoutBtn" class="btn btn-outline-light">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav id="sidebar" class="col-md-3 col-lg-2 bg-light sidebar">
+        <div class="position-sticky">
+          <h5 class="sidebar-title">Navigation</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Settings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Reports</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 ">
+        <!-- Hamburger Button -->
+         <div class="res-struct-adj1">
+          <button class="btn btn-secondary d-md-none mb-3" id="sidebarToggle">
+            ☰
+          </button>
+         </div>
+        
+
+        <!-- Notifications Section -->
+        <div class="row justify-content-center res-struct-adj2">
+          <div class="col-md-8">
+            <div class="p-3">
+              <h3 class="mb-3 d-flex justify-content-between align-items-center">
+                Notifications
+                <button class="btn btn-outline-secondary" id="toggleNotifications">
+                  Hide
+                </button>
+              </h3>
+              <ul id="notificationList" class="list-group">
+                <!-- Notifications will be dynamically added here -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-left: 30px;">
+          <h2>Welcome to Your Dashboard</h2>
+          <p>Select a module to begin your onboarding journey:</p>
+        </div>
+
+        <!-- Onboarding Modules -->
+        <div class="row">
+          <!-- Tutorial: Company Overview -->
+          <div class="col-md-4 res-struct-adj3">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">Company Overview</h5>
+                  <iframe width="100%" height="200" src="https://www.youtube.com/embed/JLnycPtolfw?si=kpgfA_GM-uNH6CXM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <p class="card-text mt-2">
+                  Learn about the company’s values, mission, and vision.
+                </p>
+                <a href="#" class="btn btn-primary mt-2">Start Module</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quiz Card -->
+          <div class="row mt-4 res-struct">
+            <div class="col-md-6">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title d-flex align-items-center">
+                    <i class="bi bi-question-circle-fill me-2"></i> Quiz: Company Overview
+                  </h5>
+                  <p class="card-text">Test your knowledge of the company’s values and mission.</p>
+                  <a href="#" class="btn btn-success">Attempt Quiz</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title d-flex align-items-center">
+                    <i class="bi bi-clipboard-check-fill me-2"></i> Policies Quiz
+                  </h5>
+                  <p class="card-text">Check how well you understand the company policies.</p>
+                  <a href="#" class="btn btn-success">Attempt Quiz</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          
+          <!-- Task Tracker Section -->
+          <div class="row justify-content-center res-struct">
+            <div class="col-md-8">
+              <div class="p-3">
+                <h3 class="mb-3">Your Onboarding Tasks</h3>
+
+                <!-- Task Creation Section -->
+                <div class="input-group mb-3">
+                  <input id="newTaskInput" type="text" class="form-control" placeholder="Add a new task"
+                    aria-label="New Task" />
+                  <button id="addTaskBtn" class="btn btn-success">
+                    Add Task
+                  </button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress mb-3">
+                  <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                    aria-valuemin="0" aria-valuemax="100">
+                    0%
+                  </div>
+                </div>
+
+                <!-- Progress Summary -->
+                <p id="progressSummary" class="mb-3 text-center"></p>
+
+                <!-- Task List -->
+                <ul id="taskList" class="list-group"></ul>
+
+                <!-- Reset Button -->
+                <button id="resetTasksBtn" class="btn btn-secondary mt-3 w-100">
+                  Reset Tasks
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Information Panel -->
+          <div class="row mt-4 res-struct">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title d-flex align-items-center">
+                    <i class="bi bi-info-circle-fill me-2"></i> Important Onboarding Information
+                  </h5>
+                  <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span><i class="bi bi-arrow-right-circle-fill me-2"></i> Complete your profile setup</span>
+                      <span class="badge bg-primary rounded-pill">Required</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span><i class="bi bi-arrow-right-circle-fill me-2"></i> Review and accept policies</span>
+                      <span class="badge bg-primary rounded-pill">Required</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span><i class="bi bi-arrow-right-circle-fill me-2"></i> Attend mandatory training</span>
+                      <span class="badge bg-success rounded-pill">Optional</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Tutorial Modules Section -->
+          <div class="row mt-4 res res-struct">
+            <h3 class="mb-3">Interactive Tutorials</h3>
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">Module 1: Introduction</h5>
+                  <p class="card-text">
+                    Get an introduction about company and profile setup.
+                  </p>
+                  <a href="#" class="btn btn-primary">Start Tutorial</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">Module 2: Company Policies</h5>
+                  <p class="card-text">
+                    Learn about essential policies you need to know.
+                  </p>
+                  <a href="#" class="btn btn-primary">Start Tutorial</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">Module 3: Training Overview</h5>
+                  <p class="card-text">
+                    Explore the training sessions available to you.
+                  </p>
+                  <a href="#" class="btn btn-primary">Start Tutorial</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+<!-- Task Checklist Section -->
+<div class="row mt-5 justify-content-center res-struct">
+  <div class="col-md-8">
+    <div class="card p-3">
+      <h3 class="mb-3">Onboarding Checklist</h3>
+      <ul id="taskChecklist" class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Complete Profile Setup
+          <input type="checkbox" class="form-check-input checklist-item" />
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Review Company Policies
+          <input type="checkbox" class="form-check-input checklist-item" />
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Attend Training Session
+          <input type="checkbox" class="form-check-input checklist-item" />
+        </li>
+      </ul>
+      <button id="resetChecklistBtn" class="btn btn-secondary mt-3 w-100">Reset Checklist</button>
+    </div>
+  </div>
+</div>
+
+<!-- Progress Tracker Section -->
+<div class="row mt-3 justify-content-center res-struct">
+  <div class="col-md-8">
+    <div class="progress mb-3">
+      <div id="progressTrackerBar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100">0%
+      </div>
+    </div>
+    <p id="progressTrackerSummary" class="text-center ">0 out of 3 tasks completed</p>
+  </div>
+</div>
+      </main>
+    </div>
+  </div>
+
+
+
+
+
+<!-- Resource Library Section -->
+<div class="row mt-2" >
+  <div class="col-md-12">
+    <h3 class="mb-3 res-lib">Resource Library</h3>
+
+    <!-- Search Bar and Filters -->
+    <div class="d-flex justify-content-between mb-3 lib-btn">
+      <input type="text" id="resourceSearch" class="form-control w-50" placeholder="Search resources..." />
+      <div class="btn-group">
+        <button class="btn btn-outline-primary filter-btn" data-filter="all">All</button>
+        <button class="btn btn-outline-primary filter-btn" data-filter="documents">Documents</button>
+        <button class="btn btn-outline-primary filter-btn" data-filter="videos">Videos</button>
+        <button class="btn btn-outline-primary filter-btn" data-filter="guides">Guides</button>
+      </div>
+    </div>
+
+    <!-- Resource Cards -->
+    <div class="row res-lib" id="resourceGrid">
+      <div class="col-md-4 resource-item" data-type="documents">
+        <div class="card">
+          <div class="card-body d-flex align-items-center">
+            <i class="bi bi-file-earmark-text-fill me-3" style="font-size: 2rem;"></i>
+            <div>
+              <h5 class="card-title">Employee Handbook</h5>
+              <button class="btn btn-outline-secondary btn-sm">Download</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 resource-item" data-type="videos">
+        <div class="card">
+          <div class="card-body d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-3" style="font-size: 2rem;"></i>
+            <div>
+              <h5 class="card-title">Onboarding Overview</h5>
+              <button class="btn btn-outline-secondary btn-sm">Watch</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 resource-item" data-type="guides">
+        <div class="card">
+          <div class="card-body d-flex align-items-center">
+            <i class="bi bi-journal-text me-3" style="font-size: 2rem;"></i>
+            <div>
+              <h5 class="card-title">Training Guide</h5>
+              <button class="btn btn-outline-secondary btn-sm">View</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Team Introduction & Meetups Section -->
+<div class="row mt-5 res-lib">
+  <div class="col-md-12">
+    <h3 class="mb-3">Team Introduction</h3>
+    
+    <!-- Carousel for Team Members -->
+    <div id="teamCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card">
+                <img src="images/Emp1.jpg" class="card-img-top" alt="Team Member 1">
+                <div class="card-body">
+                  <h5 class="card-title">Jina Chaugh</h5>
+                  <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, quia. Quas debitis possimus exercitationem molestiae nisi! Illum, unde soluta dolores cumque beatae perspiciatis similique distinctio. Consequuntur recusandae cumque architecto a.</p>
+                  <button class="btn btn-primary">Schedule Meetup</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <img src="images/Emp2.jpg" class="card-img-top" alt="Team Member 2">
+                <div class="card-body">
+                  <h5 class="card-title">Denn Martin</h5>
+                  <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus iure officiis cupiditate commodi reprehenderit eligendi voluptates possimus temporibus, voluptatem vero, perferendis id totam nobis asperiores impedit sequi amet consequatur molestiae?</p>
+                  <button class="btn btn-primary">Schedule Meetup</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <img src="images/Emp3.jpg" class="card-img-top" alt="Team Member 3">
+                <div class="card-body">
+                  <h5 class="card-title">Vann De Caso</h5>
+                  <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt libero optio dolorem excepturi fugit possimus. Quasi, eaque? Dolorum, voluptatum laboriosam, atque, accusamus fugiat cupiditate cum expedita sunt provident consectetur veritatis.
+                  </p>
+                  <button class="btn btn-primary">Schedule Meetup</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Add more carousel items as needed -->
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#teamCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#teamCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <h3 class="mb-3">Meetups</h3>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Team Building Event</h5>
+            <p class="card-text">Join us for a fun team-building event next week!</p>
+            <button class="btn btn-primary">Join Meetup</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Weekly Check-In</h5>
+            <p class="card-text">Catch up with the team during our weekly check-in!</p>
+            <button class="btn btn-primary">Join Meetup</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Lunch & Learn</h5>
+            <p class="card-text">Join us for a lunch and learn session next month!</p>
+            <button class="btn btn-primary">Join Meetup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Feedback and Completion Section -->
+<div class="row mt-5 mb-3 res-lib">
+  <div class="col-md-12">
+    <h3 class="mb-3">Feedback and Completion</h3>
+    <div class="card p-4">
+      <h5 class="card-title">We value your feedback!</h5>
+      <p class="card-text">Please share your thoughts about the onboarding process:</p>
+      <form id="feedbackForm">
+        <div class="mb-3">
+          <label for="feedbackInput" class="form-label">Your Feedback</label>
+          <textarea id="feedbackInput" class="form-control" rows="4" placeholder="Type your feedback here..."></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="ratingSelect" class="form-label">Rate Your Experience</label>
+          <select id="ratingSelect" class="form-select">
+            <option value="" disabled selected>Select a rating</option>
+            <option value="1">1 - Poor</option>
+            <option value="2">2 - Fair</option>
+            <option value="3">3 - Good</option>
+            <option value="4">4 - Very Good</option>
+            <option value="5">5 - Excellent</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+      </form>
+    </div>
+    <div class="mt-4">
+      <h5>Onboarding Completion</h5>
+      <p>Congratulations on completing your onboarding tasks! We're excited to have you on board.</p>
+      <button id="finishButton" class="btn btn-success">Finish</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="dashboard.js"></script>
+  <!-- Link to JavaScript -->
+</body>
+
+</html>

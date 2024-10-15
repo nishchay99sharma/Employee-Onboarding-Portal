@@ -98,7 +98,6 @@ iframe {
 /* Sidebar Styles */
 #sidebar {
   width: 150px;
-  height: 100vh;
   position: absolute;
   left: 0;
   z-index: 1;
@@ -169,10 +168,12 @@ iframe {
 
   #sidebar.open {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 60px;
     width: 150px;
     z-index: 1;
+    background: #f4f7fa;
+    height: 18vh;
   }
 
   #sidebarToggle {

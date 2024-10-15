@@ -25,6 +25,18 @@ body {
   flex: 1; /* Take up available space */
 }
 
+
+.notification-list {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Ensure dropdown stays visible on small screens */
+.notification-dropdown::before {
+  display: none; /* Hide the default Bootstrap arrow */
+}
+
 /* Hidden Notification Styles */
 .collapsed {
   display: none; /* Hide the notification list when collapsed */
@@ -87,17 +99,12 @@ iframe {
 #sidebar {
   width: 150px;
   height: 100vh;
-  background-color: #f8f9fa;
   position: absolute;
-  top: 60px;
   left: 0;
   z-index: 1;
   transition: transform 0.3s ease-in-out;
 }
 
-#sidebarToggle{
-  padding-right: 10px;
-}
 
 #sidebar.collapse {
   transform: translateX(-100%); /* Move sidebar off-screen */
@@ -146,8 +153,6 @@ iframe {
   margin-top: 20px;
 }
 
-
-
 /* Responsive Adjustments */
 @media (min-width: 768px) {
   #sidebar {
@@ -159,23 +164,19 @@ iframe {
 @media (max-width: 768px) {
   #sidebar {
     display: none;
+    margin-top: 60px;
   }
 
   #sidebar.open {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 60px;
     width: 150px;
     z-index: 1;
   }
 
-  #sidebarToggle{
-    padding-right: 10px;
-  }
-  
-
-  .container-fluid {
-    padding-left: 0;
+  #sidebarToggle {
+    margin-left: 10px;
   }
 
   .navbar-brand {
@@ -194,19 +195,37 @@ iframe {
     padding: 0 10px 0 10px;
   }
 
-  .res-struct{
+  .res-struct {
     padding: 0 0 0 35px;
   }
 
-  .res-struct-adj1{
+  .res-struct-adj1 {
     padding: 0 0 0 20px;
   }
 
-  .res-struct-adj2{
+  .res-struct-adj2 {
     padding: 0 0 0 10px;
   }
 
-  .res-struct-adj3{
+  .res-struct-adj3 {
     padding: 0 10px 0 20px;
+  }
+
+  .head-text-res {
+    margin: auto;
+  }
+
+  .notification-dropdown {
+    width: 100%; /* Full width on small screens */
+    left: 0 !important; /* Align to the left edge */
+    right: 0 !important; /* Align to the right edge */
+    margin: 0 auto; /* Center it */
+  }
+
+}
+
+@media (max-width: 430px){
+  #sidebar{
+    margin-top: 100px;
   }
 }

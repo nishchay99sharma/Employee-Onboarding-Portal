@@ -149,40 +149,38 @@ const notifications = [
   },
 ];
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Load notifications
+  loadNotifications();
+
+  // Initialize resource library search and filters
+  initializeResourceLibrary();
+});
+
 // Function to load notifications
 function loadNotifications() {
   const notificationList = document.getElementById("notificationList");
+  const notificationBadge = document.getElementById("notificationBadge");
   notificationList.innerHTML = ""; // Clear the notification list
 
+  // Populate notifications
   notifications.forEach((notification) => {
     const notificationItem = document.createElement("li");
-    notificationItem.className = "list-group-item notification-item";
+    notificationItem.className = "dropdown-item notification-item";
     notificationItem.innerHTML = `
       <span class="notification-text">${notification.text}</span>
-      <small class="text-muted">${notification.timestamp}</small>
+      <small class="text-muted d-block">${notification.timestamp}</small>
     `;
     notificationList.appendChild(notificationItem);
   });
+
+  // Update the notification badge with the count
+  notificationBadge.textContent = notifications.length;
 }
 
 // Load notifications on page load
-loadNotifications();
+document.addEventListener("DOMContentLoaded", loadNotifications);
 
-// Toggle functionality for notifications
-document
-  .getElementById("toggleNotifications")
-  .addEventListener("click", function () {
-    const notificationList = document.getElementById("notificationList");
-    // Toggle the collapsed class
-    notificationList.classList.toggle("collapsed");
-
-    // Check if the notifications are collapsed or not, and change the button text accordingly
-    if (notificationList.classList.contains("collapsed")) {
-      this.innerHTML = "Show"; // Set to "Show" if collapsed
-    } else {
-      this.innerHTML = "Hide"; // Set to "Hide" if visible
-    }
-  });
 
 // Variables for Checklist and Progress Tracker
 const checklistItems = document.querySelectorAll(".checklist-item");
@@ -224,39 +222,31 @@ resetChecklistBtn.addEventListener("click", () => {
 updateTrackerProgress();
 
 // Search functionality for resource library
-document
-  .getElementById("resourceSearch")
-  .addEventListener("input", function (e) {
-    const query = e.target.value.toLowerCase();
-    const resourceItems = document.querySelectorAll(".resource-item");
+function initializeResourceLibrary() {
+  const resourceSearch = document.getElementById("resourceSearch");
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const resourceItems = document.querySelectorAll(".resource-item");
 
+  // Search functionality
+  resourceSearch.addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase();
     resourceItems.forEach((item) => {
       const title = item.querySelector(".card-title").textContent.toLowerCase();
-      if (title.includes(query)) {
-        item.style.display = "block";
-      } else {
-        item.style.display = "none";
-      }
+      item.style.display = title.includes(query) ? "block" : "none";
     });
   });
 
-// Filter functionality
-const filterButtons = document.querySelectorAll(".filter-btn");
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    const filter = this.getAttribute("data-filter");
-    const resourceItems = document.querySelectorAll(".resource-item");
-
-    resourceItems.forEach((item) => {
-      if (filter === "all" || item.getAttribute("data-type") === filter) {
-        item.style.display = "block";
-      } else {
-        item.style.display = "none";
-      }
+  // Filter functionality
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.getAttribute("data-filter");
+      resourceItems.forEach((item) => {
+        const itemType = item.getAttribute("data-type");
+        item.style.display = filter === "all" || filter === itemType ? "block" : "none";
+      });
     });
   });
-});
+}
 
 // Handle feedback form submission
 document
